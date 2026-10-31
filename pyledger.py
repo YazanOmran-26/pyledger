@@ -57,8 +57,53 @@ def add_transaction(info):
     info.append(transaction)
     print(f"Added:(id: {new_id}) {description} ({amount:.2f})")
 ##############################################################################
+def list_filter(info):
+    if not info:
+        print("No transactions yet...")
+        return
+    print("Filter by: 1.All  2.Month  3.Category  4.Type")
+    choice = input("Choose 1-4: ").strip()
+    if choice == "1":
+        results = info
+
+    elif choice == "2":
+        try:
+            month = int(input("Type in a month (1-12): "))
+        except ValueError:
+            print("Please type a number from 1 to 12...")
+            return
+        results = []
+        for t in info:
+            if int(t["date"][5:7]) == month:
+                results.append(t)
+
+    elif choice == "3":
+        category = input("Category: ").strip()
+        results = []
+        for t in info:
+            if t["category"].lower() == category.lower():   
+                results.append(t)
+
+    elif choice == "4":
+        trans_type = input("Type (income/expense): ").strip().lower()
+        results = []
+        for t in info:
+            if t["type"] == trans_type:
+                results.append(t)  
+
+    else:
+        print("That filter isn't available yet...")
+        return 
+
+    if not results:
+        print("No matching transactions...")
+        return
+
+    for t in results:
+        print(f"[{t['id']}] {t['date']} | {t['type']} | {t['amount']:.2f} | {t['category']} | {t['description']}")
 
 
+##############################################################################
 def main_menu():
     storage = []
     while True:
@@ -67,7 +112,7 @@ def main_menu():
         if action == "1":
             add_transaction(storage)
         elif action == "2":
-            print("list")
+            list_filter(storage)
         elif action == "3":   
             print("edit")
         elif action == "4":
