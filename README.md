@@ -1,3 +1,5 @@
 # pyledger documentation
-1.I've just finished the add transaction function it works very well the "ids" part is confusing but other than that its quite easy to understand.
-2. I've just finished the list and filter it was slightly trickier than the add transactions function but still pretty understandable 
+## How To Use The Program:
+1- Inputs do not need to be capitalized in anyway no Inputs will crash the program.
+2- Python Language used.
+3- Click run and use the instructions on screen that guide you on the basic controls.
